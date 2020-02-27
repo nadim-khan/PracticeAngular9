@@ -1,3 +1,9 @@
+ .navbar{
+   top:0;
+   position:fixed;
+   width:100%;
+   overflow:none;
+ }
  a,
  a:visited {
    color: gray;
@@ -23,16 +29,17 @@
 
  svg#clouds {
    position: fixed;
-   bottom: -160px;
+   bottom: -260px;
    left: -230px;
    z-index: -10;
    width: 120%;
+   opacity:0.6;
  }
 
  .mainBody {
+   overflow-y:auto;
    top: 0;
-   margin-left: 12%;
-   width: 76%;
+   margin: 5.5% 12% 0 12%;
    min-height: 72vh;
    background: transparent;
  }
@@ -46,16 +53,10 @@
 
 
  /* Responsive Styles */
- @media screen and (max-width: 767px) {
-
-   svg#rocket-smoke {
-     right: 120px;
-     transform: rotate(-5deg);
-   }
-
+ /* @media screen and (max-width: 767px) {
    .mainBody {
      top: 0;
-     margin-left: 3%;
+     margin: 18% 5% 0 5%;
      width: 70%;
    }
    svg#clouds {
@@ -66,17 +67,25 @@
     width: 170%;
   }
  }
+ @media screen and (max-width: 1024px) {
+
+  .mainBody {
+    top: 0;
+    margin: 3% 5% 0 5%;
+    width: 70%;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -180px;
+   left: -230px;
+   z-index: -10;
+   width: 170%;
+ }
+}
  @media screen and (max-width: 1200px) {
-
-   svg#rocket-smoke {
-     right: 120px;
-     transform: rotate(-5deg);
-   }
-
    .mainBody {
      top: 0;
-     margin-left: 3%;
-     width: 70%;
+     margin: 22.5% 5% 0 5%;
    }
    svg#clouds {
     position: fixed;
@@ -88,15 +97,10 @@
  }
 
  @media screen and (max-width: 575px) {
-   svg#rocket-smoke {
-     display: none;
-     visibility: hidden;
-   }
 
    .mainBody {
      top: 0;
-     margin-left: 3%;
-     width: 70%;
+     margin: 22.5% 5% 0 5%;
    }
    svg#clouds {
     position: fixed;
@@ -107,15 +111,10 @@
   }
  }
  @media screen and (max-width: 360px) {
-  svg#rocket-smoke {
-    display: none;
-    visibility: hidden;
-  }
 
   .mainBody {
     top: 0;
-    margin-left: 3%;
-    width: 70%;
+    margin: 25.5% 5% 0 5%;
   }
   svg#clouds {
    position: fixed;
@@ -123,5 +122,103 @@
    left: -230px;
    z-index: -10;
    width: 190%;
+ }
+} */
+@media only screen and (max-width: 319px) {
+  .mainBody {
+    top: 0;
+    margin: 55% 5% 0 5%;
+    width:90%;
+    font-size:12px;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -180px;
+   left: -230px;
+   z-index: -10;
+   width: 170%;
+ }
+} 
+@media only screen and (max-width: 600px) {
+  .mainBody {
+    top: 0;
+    margin: 17% 5% 0 5%;
+    width:90%;
+    font-size:12px;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -180px;
+   left: -230px;
+   z-index: -10;
+   width: 170%;
+ }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .mainBody {
+    top: 0;
+    margin: 17% 5% 0 5%;
+    width:90%;
+    font-size:12px;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -180px;
+   left: -230px;
+   z-index: -10;
+   width: 170%;
+ }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .mainBody {
+    top: 0;
+    margin: 13% 5% 0 5%;
+    width:90%;
+    font-size:16px;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -180px;
+   left: -230px;
+   z-index: -10;
+   width: 170%;
+ }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .mainBody {
+    top: 0;
+    margin: 10% 5% 0 5%;
+    width:90%;
+    font-size:16px;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -180px;
+   left: -230px;
+   z-index: -10;
+   width: 170%;
+ }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .mainBody {
+    top: 0;
+    margin: 6.5% 5% 0 5%;
+    width:90%;
+    font-size:12px;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -180px;
+   left: -230px;
+   z-index: -10;
+   width: 170%;
  }
 }

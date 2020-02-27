@@ -26,7 +26,7 @@
    bottom: -160px;
    left: -230px;
    z-index: -10;
-   width: 1920px;
+   width: 120%;
  }
 
  .mainBody {
@@ -58,6 +58,33 @@
      margin-left: 3%;
      width: 70%;
    }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
+ }
+ @media screen and (max-width: 1200px) {
+
+   svg#rocket-smoke {
+     right: 120px;
+     transform: rotate(-5deg);
+   }
+
+   .mainBody {
+     top: 0;
+     margin-left: 3%;
+     width: 70%;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
  }
 
  @media screen and (max-width: 575px) {
@@ -71,4 +98,30 @@
      margin-left: 3%;
      width: 70%;
    }
+   svg#clouds {
+    position: fixed;
+    bottom: -200px;
+    left: -230px;
+    z-index: -10;
+    width: 220%;
+  }
  }
+ @media screen and (max-width: 360px) {
+  svg#rocket-smoke {
+    display: none;
+    visibility: hidden;
+  }
+
+  .mainBody {
+    top: 0;
+    margin-left: 3%;
+    width: 70%;
+  }
+  svg#clouds {
+   position: fixed;
+   bottom: -200px;
+   left: -230px;
+   z-index: -10;
+   width: 190%;
+ }
+}

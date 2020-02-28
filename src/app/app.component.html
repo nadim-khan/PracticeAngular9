@@ -10,14 +10,14 @@
     </div><br><br><br>
     <div class="collapse navbar-collapse" id="navCollapseId">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['/home']">Home</a></li>
-        <li><a [routerLink]="['/employee']">Employee</a></li>
+        <li title="Home"><a [routerLink]="['/home']">Home</a></li>
+        <li title="Employee Details"><a [routerLink]="['/employee']">Employee</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown">Company <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a [routerLink]="['/company/companyInfo']">General Information</a></li>
-            <li><a [routerLink]="['/company/aboutUs']">About Us</a></li>
-            <li><a [routerLink]="['/company/companyFAQ']">FAQ</a></li>
+            <li title="Company Info"><a [routerLink]="['/company/companyInfo']">General Information</a></li>
+            <li title="About The Company"><a [routerLink]="['/company/aboutUs']">About Us</a></li>
+            <li title="FAQ"><a [routerLink]="['/company/companyFAQ']">FAQ</a></li>
           </ul>
         </li>
 
@@ -32,6 +32,9 @@
 
 <div class="mainBody">
   <router-outlet></router-outlet>
+</div>
+<div class="scrollBtn">
+  <button class="btn btn-default" title="Move to the Top"><span class="glyphicon glyphicon-arrow-up"></span></button>
 </div>
 
 <div class="content" role="main">

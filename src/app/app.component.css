@@ -1,0 +1,223 @@
+.navbar{
+    top:0;
+    position:fixed;
+    width:100%;
+    overflow:none;
+    z-index:1000;
+  }
+  a,
+  a:visited {
+    color: gray;
+    font-family: 'Google Sans', sans-serif;
+    text-decoration: none;
+    margin-bottom: 3px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.43;
+  }
+ 
+  a:hover {
+    border-bottom: 2px solid #1976d2;
+    text-decoration: none;
+    margin-bottom: 1px;
+  }
+  .navbar-header a{
+    margin-left:15px;
+  }
+  .navbar-header a:hover {
+    border: 0px solid transparent;
+  }
+ 
+  svg#clouds {
+    position: fixed;
+    bottom: -260px;
+    left: -230px;
+    z-index: -10;
+    width: 120%;
+    opacity:0.6;
+  }
+ 
+  .mainBody {
+    overflow-y:auto;
+    top: 0;
+    padding-top:2%;
+    margin: 5.5% 12% 0 12%;
+    min-height: 72vh;
+    background: transparent;
+  }
+ 
+  .mainBody p {
+    letter-spacing: .2px;
+    line-height: 24px;
+    padding-top: 20px;
+    margin: 10px 0;
+  }
+ 
+  .scrollBtn button{
+    border-radius :60%;
+    margin-right:10%;
+    position:fixed;
+    bottom:10%;
+    right:2%;
+    height:45px;
+    width:45px;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+  }
+ 
+ 
+  /* Responsive Styles */
+  /* @media screen and (max-width: 767px) {
+    .mainBody {
+      top: 0;
+      margin: 18% 5% 0 5%;
+      width: 70%;
+    }
+    svg#clouds {
+     position: fixed;
+     bottom: -180px;
+     left: -230px;
+     z-index: -10;
+     width: 170%;
+   }
+  }
+  @media screen and (max-width: 1024px) {
+ 
+   .mainBody {
+     top: 0;
+     margin: 3% 5% 0 5%;
+     width: 70%;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
+ }
+  @media screen and (max-width: 1200px) {
+    .mainBody {
+      top: 0;
+      margin: 22.5% 5% 0 5%;
+    }
+    svg#clouds {
+     position: fixed;
+     bottom: -180px;
+     left: -230px;
+     z-index: -10;
+     width: 170%;
+   }
+  }
+ 
+  @media screen and (max-width: 575px) {
+ 
+    .mainBody {
+      top: 0;
+      margin: 22.5% 5% 0 5%;
+    }
+    svg#clouds {
+     position: fixed;
+     bottom: -200px;
+     left: -230px;
+     z-index: -10;
+     width: 220%;
+   }
+  }
+  @media screen and (max-width: 360px) {
+ 
+   .mainBody {
+     top: 0;
+     margin: 25.5% 5% 0 5%;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -200px;
+    left: -230px;
+    z-index: -10;
+    width: 190%;
+  }
+ } */
+ 
+ @media only screen and (max-width: 600px) {
+   .mainBody {
+     top: 0;
+     margin: 20% 5% 0 5%;
+     width:90%;
+     font-size:12px;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
+ }
+ 
+ /* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+   .mainBody {
+     top: 0;
+     margin: 17% 5% 0 5%;
+     width:90%;
+     font-size:12px;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
+ }
+ 
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media only screen and (min-width: 768px) {
+   .mainBody {
+     top: 0;
+     margin: 13% 5% 0 5%;
+     width:90%;
+     font-size:16px;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
+ } 
+ 
+ /* Large devices (laptops/desktops, 992px and up) */
+ @media only screen and (min-width: 992px) {
+   .mainBody {
+     top: 0;
+     margin: 10% 5% 0 5%;
+     width:90%;
+     font-size:16px;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
+ } 
+ 
+ /* Extra large devices (large laptops and desktops, 1200px and up) */
+ @media only screen and (min-width: 1200px) {
+   .mainBody {
+     top: 0;
+     margin: 6.5% 17% 0 7%;
+     width:86%;
+     font-size:14px;
+   }
+   svg#clouds {
+    position: fixed;
+    bottom: -180px;
+    left: -230px;
+    z-index: -10;
+    width: 170%;
+  }
+ }

@@ -20,5 +20,4 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     this.languages= this.globalService.languages;
   }
-
 }

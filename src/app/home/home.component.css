@@ -1,0 +1,6 @@
+.ngSwitchArea{
+    position:relative;
+    margin:0 1% 0 65%;
+    padding:2%;
+    z-index:10;
+}

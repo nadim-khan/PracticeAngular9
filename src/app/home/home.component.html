@@ -1,4 +1,26 @@
 <h3>Home Component</h3>
+
+<div class="ngSwitchArea">
+    <h4>Using NgSwitch</h4>
+    <select (change)="setValue($event)" class="form-control">
+        <option value="">--- Choose Hours to complete ---</option>
+        <option value="one">1</option>
+        <option value="two">2</option>
+        <option value="three">3</option>
+        <option value="another">Another</option>
+    </select>
+    <p [ngSwitch]="choose">
+        <span> <b>To Be completed within - </b></span>
+        <span style="color:red;font-weight:600">
+        <span *ngSwitchCase="'one'"> First</span>
+        <span *ngSwitchCase="'two'"> Secon</span>
+        <span *ngSwitchCase="'three'"> Third</span>
+        <span *ngSwitchDefault> N/A (Please select)</span> </span>
+        <span> <b> Half</b></span>
+    </p>
+</div>
+
+<br>
 Top Tutorials
 HTML Tutorial
 CSS Tutorial

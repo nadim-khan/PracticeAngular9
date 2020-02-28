@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { GlobalServiceService } from './globalServices/global-service.service';
 
 @Component({
@@ -7,13 +7,18 @@ import { GlobalServiceService } from './globalServices/global-service.service';
   styleUrls: ['./app.component.css'],
   preserveWhitespaces:true
 })
-export class AppComponent {
-  title = 'Practice                 2020';
+export class AppComponent implements OnInit {
+  title = 'Practice 2020';
+  languages;
   @HostListener('click',['$event'])
   onhostclick(event:Event){
-    console.log('Event  : ',event)
+    console.log('Event  : ',event);
+    
   }
-  constructor(@Inject(GlobalServiceService) globalService){
-    console.log("Global Service : ",globalService)
+  constructor(private globalService: GlobalServiceService){
   }
+  ngOnInit(){
+    this.languages= this.globalService.languages;
+  }
+
 }

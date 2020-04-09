@@ -1,24 +1,24 @@
-import { CompanyInfoComponent } from './company/company-info/company-info.component';
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmployeeComponent } from './employee/employee.component';
-import { CompanyComponent } from './company/company.component';
-import { CompanyAboutUsComponent } from './company/company-about-us/company-about-us.component';
-import { CompanyFAQComponent } from './company/company-faq/company-faq.component';
+import { GoogleComponent } from './google/google.component';
+import { MicrosoftComponent } from './microsoft/microsoft.component';
+import { WopiApiComponent } from './wopi-api/wopi-api.component';
+import { AboutComponent } from './about/about.component';
+import { ExcelComponent } from './microsoft/excel/excel.component';
+import { CalenderComponent } from './microsoft/calender/calender.component';
 
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'home',component:HomeComponent},
-  {path:'employee',component:EmployeeComponent
-  },
-  {path:'company',
-  children:[
-    {path:'companyInfo',component:CompanyInfoComponent},
-    {path:'aboutUs',component:CompanyAboutUsComponent},
-    {path:'companyFAQ',component:CompanyFAQComponent},
-  ]}
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'google', component: GoogleComponent },
+  { path: 'microsoft', component: MicrosoftComponent,
+    children: [
+      { path: 'msExcel', component: ExcelComponent },
+      { path: 'calender', component: CalenderComponent }
+    ]
+   },
+  { path: 'wopi', component: WopiApiComponent },
+  { path: 'about', component: AboutComponent}
 ];
 
 @NgModule({

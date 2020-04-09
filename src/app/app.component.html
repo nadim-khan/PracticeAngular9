@@ -1,52 +1,122 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navCollapseId">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" [routerLink]="['/home']">Angular2020</a>
-    </div><br><br><br>
-    <div class="collapse navbar-collapse" id="navCollapseId">
-      <ul class="nav navbar-nav">
-        <li title="Home"><a [routerLink]="['/home']">Home</a></li>
-        <li title="Employee Details"><a [routerLink]="['/employee']">Employee</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Company <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li title="Company Info"><a [routerLink]="['/company/companyInfo']">General Information</a></li>
-            <li title="About The Company"><a [routerLink]="['/company/aboutUs']">About Us</a></li>
-            <li title="FAQ"><a [routerLink]="['/company/companyFAQ']">FAQ</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a [routerLink]="['/signup']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Language <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li *ngFor='let language of languages;' [value]="language"><a >{{language}}</a></li>
-          </ul>
-        </li>
-      </ul>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a routerLink="/" class="navbar-brand">Angular Google sheet</a>
+        <button class="navbar-toggler" type="button" (click)="toggleNavBar()" [attr.aria-expanded]="showNav" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" [class.show]="showNav" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li *ngIf="isGSignedIn" class="nav-item">
+                    <a routerLink="/google" routerLinkActive="active">Google Sheet</a>
+                </li>
+                <li *ngIf="isMSignedIn" class="nav-item">
+                    <a routerLink="/microsoft" routerLinkActive="active">Microsoft Sheet</a>
+                </li>
+                <li *ngIf="isMSignedIn" class="nav-item">
+                    <a routerLink="/microsoft/msExcel" routerLinkActive="active">Microsoft Excel</a>
+                </li>
+                <li *ngIf="isMSignedIn" class="nav-item">
+                    <a routerLink="/microsoft/calender" routerLinkActive="active">Microsoft Calender</a>
+                </li>
+                <li *ngIf="isMSignedIn" class="nav-item">
+                    <a routerLink="/wopi" routerLinkActive="active">WOPI Api</a>
+                </li>
+                <!-- <li *ngIf="isGSignedIn" class="nav-item">
+                  <a routerLink="/hooks" routerLinkActive="active">User Auth</a>
+              </li> -->
+                <li class="nav-item">
+                    <a routerLink="/about" routerLinkActive="active">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav justify-content-end">
+                <button [style.display]="googleDisplay" *ngIf="!isMSignedIn" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
+              </button>
+                <div *ngIf="!isGSignedIn && !isMSignedIn">
+                    <div (click)="msSignIn()" class="btn btn-block btn-social msLogin">
+                        <span [ngStyle]="{'background':'transparent'}" class="fa fa-windows"></span> <span class="loginFont">MS Login </span>
+                    </div>
+                </div>
+                <li class="dropdown" *ngIf="isGSignedIn || isMSignedIn">
+                    <div *ngIf="isMSignedIn ; then MSuser else GoogleUser"></div>
+                    <ng-template #MSuser>
+                        <!-- <div *ngIf="mdata.authenticated" ngbDropdown placement="bottom-left" class="nav-item">
+                            <a ngbDropdownToggle id="userMenu" class="nav-link" href="javascript:undefined" role="button" aria-haspopup="true" aria-expanded="false">
+                                <div *ngIf="mdata.user && mdata.user.avatar; then userAvatar else defaultAvatar"></div>
+                                <ng-template #userAvatar>
+                                    <img src="mdata.user.avatar" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                                </ng-template>
+                                <ng-template #defaultAvatar>
+                                    <fa-icon [icon]="[ 'far', 'user-circle' ]" fixedWidth="true" size="lg" class="rounded-circle align-self-center mr-2"></fa-icon>
+                                </ng-template>
+                            </a>
+                            <div ngbDropdownMenu aria-labelledby="userMenu">
+                                <h5 *ngIf="mdata.user" class="dropdown-item-text mb-0">{{mdata.user.displayName}}</h5>
+                                <p *ngIf="mdata.user" class="dropdown-item-text text-muted mb-0">{{mdata.user.mail}}</p>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:undefined" role="button" (click)="msSignOut()">Sign Out</a>
+                            </div>
+                        </div> -->
+
+
+                        <a href="javascript:undefined" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div *ngIf="mdata.user.avatar; then userAvatar else defaultAvatar"></div>
+                            <ng-template #userAvatar>
+                                <img [src]="mdata.user.avatar" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                            </ng-template>
+                            <ng-template #defaultAvatar>
+                                <fa-icon [icon]="[ 'far', 'user-circle' ]" fixedWidth="true" size="lg" class="rounded-circle align-self-center mr-2"></fa-icon>
+                            </ng-template>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <h5 *ngIf="mdata.user" class="dropdown-item-text mb-0">{{mdata.user.displayName}}</h5>
+                            <p *ngIf="mdata.user" class="dropdown-item-text text-muted mb-0">{{mdata.user.mail}}</p>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:undefined" role="button" (click)="msSignOut()">Sign Out</a>
+                        </ul>
+
+                    </ng-template>
+                    <ng-template #GoogleUser>
+                        <a href="javascript:undefined" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div *ngIf="isGSignedIn && currentUserInfo.UK; then userAvatar else defaultAvatar"></div>
+                            <ng-template #userAvatar>
+                                <img [src]="currentUserInfo.QK" [alt]="currentUserInfo.QK" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                            </ng-template>
+                            <ng-template #defaultAvatar>
+                                <fa-icon [icon]="[ 'far', 'user-circle' ]" fixedWidth="true" size="lg" class="rounded-circle align-self-center mr-2"></fa-icon>
+                            </ng-template>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <h5 *ngIf="currentUserInfo" class="dropdown-item-text mb-0">{{currentUserInfo.Ad}}</h5>
+                            <p *ngIf="currentUserInfo" class="dropdown-item-text text-muted mb-0">{{currentUserInfo.yu}}</p>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:undefined" role="button" (click)="signOut()">Sign Out</a>
+                        </ul>
+                    </ng-template>
+
+
+                </li>
+            </ul>
+
+        </div>
     </div>
-  </div>
 </nav>
+<div class="container-fluid" id="mainContent">
 
-<div class="mainBody">
-  <router-outlet></router-outlet>
-</div>
-<!-- <div class="scrollBtn">
-  <button class="btn btn-default" title="Move to the Top"><span class="glyphicon glyphicon-arrow-up"></span></button>
-</div> -->
-
-<div class="content" role="main">
-  <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
-    viewBox="0 0 2611.084 485.677">
-    <path id="Path_39" data-name="Path 39"
-      d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z"
-      transform="translate(142.69 -634.312)" fill="#eee" />
-  </svg>
+    <div class="row" *ngIf="isGSignedIn || isMSignedIn">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h1>Google and Microsoft Graph API's</h1>
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-sm-1">
+        </div>
+    </div>
+    <!-- <div class="row" *ngIf="!isGSignedIn || !currentUserInfo">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <app-home></app-home>
+        </div>
+        <div class="col-sm-1">
+        </div>
+    </div> -->
 </div>

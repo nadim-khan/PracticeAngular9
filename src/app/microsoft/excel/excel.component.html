@@ -1,0 +1,80 @@
+<div *ngIf="this.authService.user && excelData.length && showUpdateTable " [ngClass]="excelView">
+    <form [formGroup]="editData" (ngSubmit)="updateForm()">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" formControlName="id" placeholder="ID">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" formControlName="displayName" placeholder="Username">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" formControlName="mail" placeholder="Email">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" formControlName="address" placeholder="Office Address">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" formControlName="mobile" placeholder="Mobile">
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<div *ngIf="this.authService.user && excelData.length" [ngClass]="excelView">
+    <table class="table table-dark">
+        <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Job Title</th>
+            <th scope="col">Office address</th>
+            <th scope="col">Mobile</th>
+        </tr>
+        <tr *ngFor="let data of excelData; let i=index">
+            <td>{{i+1}}</td>
+            <td><code>{{data[0]}}</code></td>
+            <td>{{data[1]}}</td>
+            <td>{{data[2]}}</td>
+            <td>{{data[3]}}</td>
+            <td>{{data[4]}}</td>
+            <td>{{data[5]}}</td>
+            <td>
+                <button class="btn btn-primary" *ngIf="!showUpdateBtn" (click)="edit(i)">Edit</button>
+                <button class="btn btn-danger" *ngIf="!showUpdateBtn" (click)="delete(i)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="this.authService.user">
+    <div class="card" style="width: 66rem;">
+        <div class="card-body">
+            <h5 class="card-title">Add User Data</h5>
+            <p>Username - {{authService.user.displayName}}</p>
+            <p>Email - {{authService.user.mail}}</p>
+        </div>
+    </div>
+</div>
+<div *ngIf="showIframe">{{excelUrl}}
+    <iframe height="300px" width="60%" src="excelUrl" name="iframe_a"></iframe>
+</div>
+
+
+<div>
+    <a class="btn btn-primary btn-large" role="button" (click)="getExcel()">Show Excel</a>
+    <a class="btn btn-primary btn-large" role="button" (click)="OpenExcelFileOnline()">Edit Excel</a>
+    <a class="btn btn-primary btn-large" role="button" (click)="postExcel()">Save to Excel</a>
+    <button class="btn btn-primary btn-large" (click)="exportAsXLSX()"><i class="fa fa-file-excel-o" style="color:blue"></i> Download Sheet</button>
+    <a class="btn btn-primary btn-large" role="button" (click)="localExcel()">Open Local</a>
+    <a class="btn btn-primary btn-large" role="button" (click)="GetWopi('https://graph.microsoft.com/')">WOPI_Online</a>
+</div>
+
+<form id="office_form" name="office_form" target="office_frame" action="https://graph.microsoft.com/" method="post">
+    <input name="access_token" [value]="accessToken" type="hidden" />{{accessToken}}
+    <input name="access_token_ttl" value="0" type="hidden" />
+</form>
+
+<span id="frameholder"></span>

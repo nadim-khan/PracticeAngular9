@@ -3,18 +3,20 @@ import { Client } from '@microsoft/microsoft-graph-client';
 
 import { AuthService } from './auth.service';
 import { Event } from './event';
+import { AlertsService } from '../globalServices/alerts.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraphService {
-
   private graphClient: Client;
   constructor(
-    private authService: AuthService) {
+    private authService: AuthService,
+    private alertsService: AlertsService
+    ) {
 
     // Initialize the Graph client
-    this.graphClient = Client.init({
+      this.graphClient = Client.init({
       authProvider: async (done) => {
         // Get the token from the auth service
         const token = await this.authService.getAccessToken()
@@ -38,10 +40,11 @@ export class GraphService {
         .select('subject,organizer,start,end')
         .orderby('createdDateTime DESC')
         .get();
-
+      console.log('=>' + result.value);
       return result.value;
     } catch (error) {
-      // this.alertsService.add('Could not get events', JSON.stringify(error, null, 2));
+      console.log(error);
+      this.alertsService.add('Could not get events', JSON.stringify(error, null, 2));
     }
   }
 }

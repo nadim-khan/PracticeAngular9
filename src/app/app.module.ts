@@ -23,6 +23,7 @@ import { AboutComponent } from './about/about.component';
 import { ExcelComponent } from './microsoft/excel/excel.component';
 import { CalenderComponent } from './microsoft/calender/calender.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { AlertsService } from './globalServices/alerts.service';
 
 library.add(faExternalLinkAlt);
 library.add(faUserCircle);
@@ -36,7 +37,7 @@ library.add(faUserCircle);
     AboutComponent,
     ExcelComponent,
     CalenderComponent,
-    AlertsComponent
+    AlertsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +53,8 @@ library.add(faUserCircle);
     GlobalServiceService,
     JsLoaderService,
     GoogleAuthService,
-    AuthService
+    AuthService,
+    AlertsService
   ],
   bootstrap: [AppComponent]
 })

@@ -11,12 +11,9 @@ import { CalenderComponent } from './microsoft/calender/calender.component';
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'google', component: GoogleComponent },
-  { path: 'microsoft', component: MicrosoftComponent,
-    children: [
+  { path: 'microsoft', component: MicrosoftComponent},
       { path: 'msExcel', component: ExcelComponent },
-      { path: 'calender', component: CalenderComponent }
-    ]
-   },
+      { path: 'calender', component: CalenderComponent },
   { path: 'wopi', component: WopiApiComponent },
   { path: 'about', component: AboutComponent}
 ];

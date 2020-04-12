@@ -1,0 +1,2 @@
+[0411/162948.976:ERROR:settings.cc(320)] Settings magic is not 1129342067
+[0411/162949.082:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Aleena\AppData\Local\Google\Chrome\User Data\Crashpad\settings.dat: The process cannot access the file because it is being used by another process. (0x20)

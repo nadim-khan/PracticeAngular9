@@ -4,6 +4,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { GoogleAuthService } from './globalServices/google-auth.service';
 import { Router } from '@angular/router';
 import { AuthService } from './microsoft/auth.service';
+import { AlertsService } from './globalServices/alerts.service';
 
 declare global {
   interface Window { googleSDK: (googleuser: any) => void; }
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit {
     private cd: ChangeDetectorRef,
     public gdata: GoogleAuthService,
     private router: Router,
-    private mdata: AuthService) {
+    private mdata: AuthService,
+    private alertService: AlertsService) {
     // tslint:disable-next-line: no-string-literal
     window['onSignIn'] = (googleUser) => this.onSignIn(googleUser);
     if (this.gdata.isSignedIn) {
@@ -51,10 +53,11 @@ export class AppComponent implements OnInit {
     console.log('==>', this.currentUserInfo);
     this.gdata.onSignIn(googleUser);
     this.isGSignedIn = this.gdata.isSignedIn;
-    console.log(this.isGSignedIn + '' + this.isMSignedIn);
     this.googleDisplay = this.gdata.googleDisplay;
     this.cd.detectChanges();
-    this.router.navigateByUrl('/google');
+    if (this.isGSignedIn) {
+      this.router.navigateByUrl('/google');
+    }
   }
 
   public async signOut() {
@@ -62,10 +65,11 @@ export class AppComponent implements OnInit {
     await this.gdata.signOut();
     console.log('gdata signout finished');
     this.isGSignedIn = this.gdata.isSignedIn;
-    console.log(this.isGSignedIn + '' + this.isMSignedIn);
     this.googleDisplay = this.gdata.googleDisplay;
     this.cd.detectChanges();
-    this.router.navigateByUrl('');
+    if (!this.isGSignedIn) {
+      this.router.navigateByUrl('');
+    }
   }
 
   // async msSignIn(): Promise<void> {
@@ -100,16 +104,20 @@ export class AppComponent implements OnInit {
   }
 
   async msSignIn(): Promise<void> {
-    this.isMSignedIn = true;
+    this.isMSignedIn = this.mdata.authenticated;
     console.log(this.isGSignedIn + '' + this.isMSignedIn);
     await this.mdata.signIn();
-    this.router.navigateByUrl('/microsoft');
+    if (this.isMSignedIn) {
+      this.router.navigateByUrl('/microsoft');
+    }
   }
 
-  async msSignOut() : Promise<void> {
-    this.isMSignedIn = false;
+  async msSignOut(): Promise<void> {
+    this.isMSignedIn = this.mdata.authenticated;
     this.mdata.signOut();
-    this.router.navigateByUrl('');
+    if (!this.isMSignedIn) {
+      this.router.navigateByUrl('');
+    }
   }
 
 

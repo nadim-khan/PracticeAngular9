@@ -13,6 +13,7 @@ import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { AlertsService } from '../globalServices/alerts.service';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -34,7 +35,8 @@ export class AuthService {
     private zone: NgZone,
     private router: Router,
     // private http: HttpClient,
-    private msalService: MsalService) {
+    private msalService: MsalService,
+    private alertsService: AlertsService ) {
     this.authenticated = this.msalService.getUser() != null;
     this.getUser().then((user) => { this.user = user; });
   }
@@ -44,7 +46,7 @@ export class AuthService {
   async signIn(): Promise<void> {
     const result = await this.msalService.loginPopup(OAuthSettings.scopes)
       .catch((reason) => {
-        // this.alertsService.add('Login failed', JSON.stringify(reason, null, 2));
+         this.alertsService.add('Login failed', JSON.stringify(reason, null, 2));
       });
 
     if (result) {
@@ -145,7 +147,7 @@ export class AuthService {
   async getAccessToken(): Promise<string> {
     const result = await this.msalService.acquireTokenSilent(OAuthSettings.scopes)
       .catch((reason) => {
-        // this.alertsService.add('Get token failed', JSON.stringify(reason, null, 2));
+        this.alertsService.add('Get token failed', JSON.stringify(reason, null, 2));
       });
     this.currentToken = result;
 

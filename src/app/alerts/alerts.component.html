@@ -1,1 +1,17 @@
-<p>alerts works!</p>
+<!-- <div *ngFor="let alert of alertsService.alerts">
+    <ngb-alert type="danger" (close)="close(alert)">
+        <p>{{alert.message}}</p>
+        <pre *ngIf="alert.debug" class="alert-pre border bg-light p-2"><code>{{alert.debug}}</code></pre>
+    </ngb-alert>
+</div> -->
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngFor="let alert of alertsService.alerts">
+
+    <h4 class="alert-heading"><strong>Warning!</strong></h4>
+    <p>{{alert.message}}</p>
+    <hr>
+    <pre *ngIf="alert.debug" class="alert-pre border bg-light p-2"><code>{{alert.debug}}</code></pre>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="close(alert)"> 
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>

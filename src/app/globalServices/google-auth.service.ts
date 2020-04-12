@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { JsLoaderService } from './js-loader.service';
+import { AlertsService } from './alerts.service';
 
 declare global {
     var gapi;
@@ -16,7 +17,7 @@ export class GoogleAuthService {
     public signIn: EventEmitter<void> = new EventEmitter<void>();
     public signedOut: EventEmitter<void> = new EventEmitter<void>();
 
-    constructor(public loader: JsLoaderService) {
+    constructor(public loader: JsLoaderService, private alertsService: AlertsService) {
 
         console.log('Loading the javascript API file.');
         this.loader.loadjs(this.javascriptFile).then(() => {
@@ -51,6 +52,7 @@ export class GoogleAuthService {
                 (error) => {
                     console.log('Error loading client: '
                     + JSON.stringify(error));
+                    this.alertsService.add('Login failed', JSON.stringify(error, null, 2));
                 });
         });
         return p;
@@ -66,6 +68,7 @@ export class GoogleAuthService {
                     (error) => {
                         console.log('Error loading SheetsAPI: '
                         + JSON.stringify(error));
+                        this.alertsService.add('Login failed', JSON.stringify(error, null, 2));
                     });
         });
         return p;

@@ -7,25 +7,25 @@
         <div class="collapse navbar-collapse" [class.show]="showNav" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li *ngIf="isGSignedIn" class="nav-item">
-                    <a routerLink="/google" routerLinkActive="active">Google Sheet</a>
+                    <a [routerLink]="['/google']" routerLinkActive="active">Google Sheet</a>
                 </li>
                 <li *ngIf="isMSignedIn" class="nav-item">
-                    <a routerLink="/microsoft" routerLinkActive="active">Microsoft Sheet</a>
+                    <a [routerLink]="['/microsoft']" routerLinkActive="active">Microsoft Sheet</a>
                 </li>
                 <li *ngIf="isMSignedIn" class="nav-item">
-                    <a routerLink="/microsoft/msExcel" routerLinkActive="active">Microsoft Excel</a>
+                    <a [routerLink]="['/msExcel']" routerLinkActive="active">Microsoft Excel</a>
                 </li>
                 <li *ngIf="isMSignedIn" class="nav-item">
-                    <a routerLink="/microsoft/calender" routerLinkActive="active">Microsoft Calender</a>
+                    <a [routerLink]="['/calender']" routerLinkActive="active">Microsoft Calender</a>
                 </li>
                 <li *ngIf="isMSignedIn" class="nav-item">
-                    <a routerLink="/wopi" routerLinkActive="active">WOPI Api</a>
+                    <a [routerLink]="['/wopi']" routerLinkActive="active">WOPI Api</a>
                 </li>
                 <!-- <li *ngIf="isGSignedIn" class="nav-item">
                   <a routerLink="/hooks" routerLinkActive="active">User Auth</a>
               </li> -->
                 <li class="nav-item">
-                    <a routerLink="/about" routerLinkActive="active">About</a>
+                    <a [routerLink]="['/about']" routerLinkActive="active">About</a>
                 </li>
             </ul>
             <ul class="navbar-nav justify-content-end">
@@ -102,16 +102,16 @@
 </nav>
 <div class="container-fluid" id="mainContent">
 
-    <div class="row" *ngIf="isGSignedIn || isMSignedIn">
+    <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
             <h1>Google and Microsoft Graph API's</h1>
+            <app-alerts></app-alerts>
             <router-outlet></router-outlet>
+            <div class="col-sm-1">
+            </div>
         </div>
-        <div class="col-sm-1">
-        </div>
-    </div>
-    <!-- <div class="row" *ngIf="!isGSignedIn || !currentUserInfo">
+        <!-- <div class="row" *ngIf="!isGSignedIn || !currentUserInfo">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
             <app-home></app-home>
@@ -119,4 +119,4 @@
         <div class="col-sm-1">
         </div>
     </div> -->
-</div>
+    </div>

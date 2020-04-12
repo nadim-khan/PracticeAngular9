@@ -14,9 +14,14 @@ export class CalenderComponent implements OnInit {
   private events: Event[];
 
   constructor(
-    private graphService: GraphService) { }
+    private graphService: GraphService) {
+      this.refresh();
+     }
 
   ngOnInit() {
+    this.refresh();
+  }
+  refresh() {
     this.graphService.getEvents()
       .then((events) => {
         this.events = events;
